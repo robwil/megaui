@@ -17,7 +17,7 @@ use input::Input;
 pub use cursor::Layout;
 pub use input::{InputCharacter, Key, KeyCode};
 
-pub(crate) struct Window {
+pub struct Window {
     pub id: Id,
     pub parent: Option<Id>,
     pub visible: bool,
@@ -164,7 +164,7 @@ pub struct Ui {
 }
 
 #[derive(Default)]
-pub(crate) struct AnyStorage {
+pub struct AnyStorage {
     storage: HashMap<Id, Box<dyn std::any::Any>>,
 }
 
@@ -189,7 +189,7 @@ impl AnyStorage {
             .unwrap()
     }
 }
-pub(crate) struct WindowContext<'a> {
+pub struct WindowContext<'a> {
     pub window: &'a mut Window,
     pub dragging: &'a mut Option<(Id, DragState)>,
     pub drag_hovered: &'a mut Option<Id>,
@@ -527,7 +527,7 @@ impl Ui {
         self.active_window = self.child_window_stack.pop();
     }
 
-    pub(crate) fn get_active_window_context(&mut self) -> WindowContext {
+    pub fn get_active_window_context(&mut self) -> WindowContext {
         let active_window = self
             .active_window
             .expect("Rendering outside of window unsupported");

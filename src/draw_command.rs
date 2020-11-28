@@ -9,7 +9,7 @@ trait Wtf: std::any::Any + Clone {
 }
 
 #[derive(Debug, Clone)]
-pub(crate) enum DrawCommand {
+pub enum DrawCommand {
     DrawCharacter {
         dest: Rect,
         source: Rect,
@@ -82,7 +82,7 @@ impl DrawCommand {
     }
 }
 
-pub(crate) struct CommandsList {
+pub struct CommandsList {
     pub commands: Vec<DrawCommand>,
     pub clipping_zone: Option<Rect>,
     font_atlas: Rc<RefCell<FontAtlas>>,
